@@ -16,7 +16,6 @@ import java.text.ParseException;
 public class SignUpActivity extends AppCompatActivity {
 
     private TextView passwordEdt,emailEdt;
-    private Button registerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,28 +25,21 @@ public class SignUpActivity extends AppCompatActivity {
 
         emailEdt = findViewById(R.id.emailid);
         passwordEdt = findViewById(R.id.newpassword);
-        registerBtn = findViewById(R.id.signupbutton);
-
-        registerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                String userName = emailEdt.getText().toString();
-                String password = passwordEdt.getText().toString();
+    }
+    public void onSignupUser(android.view.View view) {
+        String userName = emailEdt.getText().toString();
+        String password = passwordEdt.getText().toString();
 
 
-                if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(SignUpActivity.this, "Please enter user name and password", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (!userName.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(userName).matches()) {
-                        Toast.makeText(SignUpActivity.this, "Email Verified !", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(SignUpActivity.this, "Enter valid Email address !", Toast.LENGTH_SHORT).show();
-                    }
-                }
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password)) {
+            Toast.makeText(SignUpActivity.this, "Please enter user name and password", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            if (!userName.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(userName).matches()) {
+                Toast.makeText(SignUpActivity.this, "Email Verified !", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(SignUpActivity.this, "Enter valid Email address !", Toast.LENGTH_SHORT).show();
             }
-        });
+        }
     }
 }
