@@ -32,6 +32,7 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="loginUser"
         android:text="Login"
         app:layout_constraintBottom_toTopOf="@+id/signUpTextView"
         app:layout_constraintEnd_toEndOf="@+id/signUpTextView"
