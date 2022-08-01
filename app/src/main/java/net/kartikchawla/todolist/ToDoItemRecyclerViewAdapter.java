@@ -38,6 +38,14 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
         holder.mDateTimeView.setText(mValues.get(position).dateTime);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detailsViewIntent = new Intent(view.getContext(), DetailsViewActivity.class);
+                detailsViewIntent.putExtra("id", mValues.get(position).id);
+                view.getContext().startActivity(detailsViewIntent);
+            }
+        });
 
     }
 
@@ -57,13 +65,6 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
             mIdView = binding.itemNumber;
             mContentView = binding.content;
             mDateTimeView = binding.timeStamp;
-            binding.getRoot().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent detailsViewActivityIntent = new Intent(v.getContext(), DetailsViewActivity.class);
-                    v.getContext().startActivity(detailsViewActivityIntent);
-                }
-            });
         }
 
         @Override
