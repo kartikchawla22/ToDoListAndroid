@@ -1,13 +1,15 @@
 package net.kartikchawla.todolist;
 
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.kartikchawla.todolist.placeholder.PlaceholderContent.PlaceholderItem;
+import androidx.recyclerview.widget.RecyclerView;
+
 import net.kartikchawla.todolist.databinding.ToDoFragmentItemBinding;
+import net.kartikchawla.todolist.placeholder.PlaceholderContent.PlaceholderItem;
 
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
         holder.mIdView.setText(mValues.get(position).id);
         holder.mContentView.setText(mValues.get(position).content);
         holder.mDateTimeView.setText(mValues.get(position).dateTime);
+
     }
 
     @Override
@@ -54,6 +57,13 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
             mIdView = binding.itemNumber;
             mContentView = binding.content;
             mDateTimeView = binding.timeStamp;
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent detailsViewActivityIntent = new Intent(v.getContext(), DetailsViewActivity.class);
+                    v.getContext().startActivity(detailsViewActivityIntent);
+                }
+            });
         }
 
         @Override
