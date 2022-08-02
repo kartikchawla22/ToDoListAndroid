@@ -11,6 +11,5 @@ public class DetailsViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_view);
         String id = getIntent().getStringExtra("id");
-        System.out.println((id));
     }
 }

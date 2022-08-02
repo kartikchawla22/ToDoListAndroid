@@ -1,28 +1,23 @@
 package net.kartikchawla.todolist.models;
 
-import android.app.Application;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
-
-import net.kartikchawla.todolist.MainActivity;
-import net.kartikchawla.todolist.ToDoItemFragment;
-import net.kartikchawla.todolist.ToDoListActivity;
 
 
 public class DataModel extends SQLiteOpenHelper {
     Context context;
     SQLiteDatabase db;
+
     public DataModel(Context context) {
         super(context, Constants.TO_DO_LIST_DB, null, Constants.VERSION);
-        System.out.println(context);
         this.context = context;
         db = this.getWritableDatabase();
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query = "create table if not exists " + Constants.TO_DO_LIST_TABLE + "(id integer primary key autoincrement, date text, time text, description text)";
@@ -42,11 +37,11 @@ public class DataModel extends SQLiteOpenHelper {
         args.put(Constants.DATE_COLUMN, date);
         args.put(Constants.TIME_COLUMN, time);
         args.put(Constants.DESCRIPTION_COLUMN, description);
-        Long insertQuery = db.insert(Constants.TO_DO_LIST_TABLE, null, args);
+        db.insert(Constants.TO_DO_LIST_TABLE, null, args);
         Toast.makeText(context, "New Entry Done!", Toast.LENGTH_LONG).show();
     }
+
     public Cursor readData() {
-        System.out.println("check this1 1 1 1 1  1");
         Cursor cursor = db.rawQuery("SELECT " + Constants.ID_COLUMN + ", " + Constants.DESCRIPTION_COLUMN + ", " + Constants.DATE_COLUMN + ", " + Constants.TIME_COLUMN + " FROM " + Constants.TO_DO_LIST_TABLE, null);
         return cursor;
     }
