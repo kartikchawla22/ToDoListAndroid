@@ -1,30 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:layout_height="50dp"
+    android:paddingLeft="5sp"
+    android:paddingTop="5sp"
+    android:paddingRight="5sp"
+    android:paddingBottom="5sp">
 
     <TextView
         android:id="@+id/item_number"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:inputType="none"
+        android:textAlignment="viewStart"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/timeStamp"
+        app:layout_constraintStart_toEndOf="@+id/item_number"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/timeStamp"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_height="0dp"
         android:gravity="end"
-        android:textAlignment="viewEnd"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textAlignment="center"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

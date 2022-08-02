@@ -11,13 +11,30 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+
+import android.widget.EditText;
+
+import net.kartikchawla.todolist.models.DataModel;
+
 public class AddItemActivity extends AppCompatActivity {
+
+    private DataModel dataModel;
+    private EditText dateTextField;
+    private EditText timeTextField;
+    private EditText descriptionTextField;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+        dataModel = new DataModel(this);
+        dateTextField = findViewById(R.id.datePicker);
+        timeTextField = findViewById(R.id.timePicker);
+        descriptionTextField = findViewById(R.id.description);
+    }
+    public void addItem(android.view.View view) {
+            dataModel.addData(descriptionTextField.getText().toString(), dateTextField.getText().toString() ,timeTextField.getText().toString());
     }
     public void openCalendar(android.view.View view) {
         final Calendar cldr = Calendar.getInstance();

@@ -9,19 +9,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.kartikchawla.todolist.databinding.ToDoFragmentItemBinding;
-import net.kartikchawla.todolist.placeholder.PlaceholderContent.PlaceholderItem;
+import net.kartikchawla.todolist.toDoList.ToDoListContent.ToDoListItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
+ * {@link RecyclerView.Adapter} that can display a {@link ToDoListItem}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<ToDoListItem> mValues;
 
-    public ToDoItemRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public ToDoItemRecyclerViewAdapter(List<ToDoListItem> items) {
         mValues = items;
     }
 
@@ -58,7 +58,7 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
         public final TextView mIdView;
         public final TextView mContentView;
         public final TextView mDateTimeView;
-        public PlaceholderItem mItem;
+        public ToDoListItem mItem;
 
         public ViewHolder(ToDoFragmentItemBinding binding) {
             super(binding.getRoot());
