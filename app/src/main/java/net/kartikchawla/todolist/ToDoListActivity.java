@@ -11,6 +11,9 @@ public class ToDoListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to_do_list);
+        String name = getIntent().getStringExtra("name");
+        setTitle("Welcome " + name);
+        System.out.println(name);
     }
     public void addNewItem(android.view.View view) {
         Intent toDoListIntent = new Intent(view.getContext(), AddItemActivity.class);
