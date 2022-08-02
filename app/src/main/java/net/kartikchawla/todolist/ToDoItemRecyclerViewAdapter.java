@@ -1,11 +1,13 @@
 package net.kartikchawla.todolist;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.kartikchawla.todolist.databinding.ToDoFragmentItemBinding;
@@ -18,7 +20,6 @@ import java.util.List;
  * TODO: Replace the implementation with code for your data type.
  */
 public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRecyclerViewAdapter.ViewHolder> {
-
     private final List<ToDoListItem> mValues;
 
     public ToDoItemRecyclerViewAdapter(List<ToDoListItem> items) {
@@ -72,4 +73,5 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
             return super.toString() + " '" + mContentView.getText() + "'";
         }
     }
+
 }

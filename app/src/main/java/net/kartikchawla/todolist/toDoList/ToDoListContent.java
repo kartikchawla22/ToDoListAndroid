@@ -38,7 +38,6 @@ public class ToDoListContent {
             time = data.getString(3);
             description = description.split("\n")[0];
             description = description.substring(0, Math.min(description.length(), 10)) + (description.length() > 10 ?  "..." : "");
-//            Cursor cursor = db.rawQuery("SELECT " + DataModel.Constants.ID_COLUMN + ", " + DataModel.Constants.DESCRIPTION_COLUMN + ", " + DataModel.Constants.DATE_COLUMN + ", " + DataModel.Constants.TIME_COLUMN + " FROM " + DataModel.Constants.TO_DO_LIST_TABLE, null);
             ToDoListItem item =  new ToDoListItem(id.toString(), description, date + " at " + time);
             addItem(item);
         }while (data.moveToNext());

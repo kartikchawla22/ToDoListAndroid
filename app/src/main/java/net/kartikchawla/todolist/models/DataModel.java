@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import net.kartikchawla.todolist.MainActivity;
+import net.kartikchawla.todolist.ToDoItemFragment;
+import net.kartikchawla.todolist.ToDoListActivity;
 
 
 public class DataModel extends SQLiteOpenHelper {
@@ -41,14 +43,11 @@ public class DataModel extends SQLiteOpenHelper {
         args.put(Constants.TIME_COLUMN, time);
         args.put(Constants.DESCRIPTION_COLUMN, description);
         Long insertQuery = db.insert(Constants.TO_DO_LIST_TABLE, null, args);
-        Toast.makeText(context, "data entered ok " + insertQuery, Toast.LENGTH_LONG).show();
-        db.close();
+        Toast.makeText(context, "New Entry Done!", Toast.LENGTH_LONG).show();
     }
     public Cursor readData() {
         System.out.println("check this1 1 1 1 1  1");
         Cursor cursor = db.rawQuery("SELECT " + Constants.ID_COLUMN + ", " + Constants.DESCRIPTION_COLUMN + ", " + Constants.DATE_COLUMN + ", " + Constants.TIME_COLUMN + " FROM " + Constants.TO_DO_LIST_TABLE, null);
-        System.out.println(DatabaseUtils.dumpCursorToString(cursor));
-        db.close();
         return cursor;
     }
 
