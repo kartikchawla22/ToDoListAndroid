@@ -2,8 +2,6 @@ package net.kartikchawla.todolist.toDoList;
 
 import android.database.Cursor;
 
-import net.kartikchawla.todolist.models.DataModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,23 +23,25 @@ public class ToDoListContent {
     private static void addItem(ToDoListItem item) {
         ITEMS.add(item);
     }
+
     public static void makeToDoList(Cursor data) {
         ITEMS.clear();
         COUNT = data.getCount();
-        data.moveToFirst();
-        String date, time, description;
-        Integer id;
-        do {
-            id = data.getInt(0);
-            description = data.getString(1);
-            date = data.getString(2);
-            time = data.getString(3);
-            description = description.split("\n")[0];
-            description = description.substring(0, Math.min(description.length(), 10)) + (description.length() > 10 ?  "..." : "");
-            ToDoListItem item =  new ToDoListItem(id.toString(), description, date + " at " + time);
-            addItem(item);
-        }while (data.moveToNext());
-
+        if (COUNT > 0) {
+            data.moveToFirst();
+            String date, time, description;
+            Integer id;
+            do {
+                id = data.getInt(0);
+                description = data.getString(1);
+                date = data.getString(2);
+                time = data.getString(3);
+                description = description.split("\n")[0];
+                description = description.substring(0, Math.min(description.length(), 10)) + (description.length() > 10 ? "..." : "");
+                ToDoListItem item = new ToDoListItem(id.toString(), description, date + " at " + time);
+                addItem(item);
+            } while (data.moveToNext());
+        }
     }
 
     public static class ToDoListItem {
