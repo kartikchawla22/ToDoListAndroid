@@ -19,11 +19,9 @@ import net.kartikchawla.todolist.toDoList.ToDoListContent;
  * A fragment representing a list of Items.
  */
 public class ToDoItemFragment extends Fragment {
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    private DataModel dataModel;
-    // TODO: Customize parameters
+
     private final int mColumnCount = 1;
+    private DataModel dataModel;
 
     /**
      * -     * Mandatory empty constructor for the fragment manager to instantiate the
@@ -31,16 +29,6 @@ public class ToDoItemFragment extends Fragment {
      * -
      */
     public ToDoItemFragment() {
-    }
-
-    // TODO: Customize parameter initialization
-    @SuppressWarnings("unused")
-    public static ToDoItemFragment newInstance(int columnCount) {
-        ToDoItemFragment fragment = new ToDoItemFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override

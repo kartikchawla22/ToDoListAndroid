@@ -72,7 +72,7 @@ public class AddItemActivity extends AppCompatActivity {
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePickerView, int hour, int minute) {
-                        ((TextView) view).setText(hour + ":" + (minute + 1));
+                        ((TextView) view).setText(hour + ":" + (minute));
                     }
                 }, hour, minute, true);
         timePickerDialog.show();

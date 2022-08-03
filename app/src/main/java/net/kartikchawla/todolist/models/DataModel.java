@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
-import net.kartikchawla.todolist.MainActivity;
-
 
 public class DataModel extends SQLiteOpenHelper {
     Context context;
