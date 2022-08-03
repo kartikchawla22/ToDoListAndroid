@@ -2,17 +2,15 @@ package net.kartikchawla.todolist;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import net.kartikchawla.todolist.models.DataModel;
 import net.kartikchawla.todolist.toDoList.ToDoListContent;
@@ -21,13 +19,19 @@ import net.kartikchawla.todolist.toDoList.ToDoListContent;
  * A fragment representing a list of Items.
  */
 public class ToDoItemFragment extends Fragment {
-    private DataModel dataModel;
-
-
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private DataModel dataModel;
     // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private final int mColumnCount = 1;
+
+    /**
+     * -     * Mandatory empty constructor for the fragment manager to instantiate the
+     * -     * fragment (e.g. upon screen orientation changes).
+     * -
+     */
+    public ToDoItemFragment() {
+    }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
@@ -38,21 +42,18 @@ public class ToDoItemFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    /**
-     -     * Mandatory empty constructor for the fragment manager to instantiate the
-     -     * fragment (e.g. upon screen orientation changes).
-     -     */
-   public ToDoItemFragment() {
-           }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        dataModel =  new DataModel(context);
+        refreshData(context);
+    }
+
+    public void refreshData(Context context) {
+        dataModel = new DataModel(context);
         Cursor data = dataModel.readData();
         ToDoListContent.makeToDoList(data);
     }
-
 
 
     @Override
