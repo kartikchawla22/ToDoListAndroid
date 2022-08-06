@@ -45,7 +45,23 @@ public class DataModel extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT " + Constants.ID_COLUMN + ", " + Constants.DESCRIPTION_COLUMN + ", " + Constants.DATE_COLUMN + ", " + Constants.TIME_COLUMN + " FROM " + Constants.TO_DO_LIST_TABLE, null);
         return cursor;
     }
+    public Cursor fetchItem(Integer itemId) {
 
+        Cursor cursor = db.rawQuery("SELECT " + Constants.ID_COLUMN + ", " + Constants.DESCRIPTION_COLUMN + ", " + Constants.DATE_COLUMN + ", " + Constants.TIME_COLUMN + " FROM " + Constants.TO_DO_LIST_TABLE+" WHERE "+ Constants.ID_COLUMN +" = " +itemId, null);
+
+        return cursor;
+    }
+    public boolean updateItem(Integer itemId,String description,String date, String time) {
+        ContentValues contentValues =new ContentValues();
+        contentValues.put(Constants.DESCRIPTION_COLUMN,description);
+        contentValues.put(Constants.DATE_COLUMN,date);
+        contentValues.put(Constants.TIME_COLUMN,time);
+        db.update(Constants.TO_DO_LIST_TABLE,contentValues,Constants.ID_COLUMN + "=" + itemId, null);
+      return true;
+    }
+    public boolean deleteItem(Integer itemId) {
+        return db.delete(Constants.TO_DO_LIST_TABLE, Constants.ID_COLUMN + "=" + itemId, null) > 0;
+    }
     static class Constants {
         private static final String TO_DO_LIST_DB = "ToDoListDB";
         private static final String TO_DO_LIST_TABLE = "ToDoListTable";
