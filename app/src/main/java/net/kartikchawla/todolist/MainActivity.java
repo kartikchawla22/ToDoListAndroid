@@ -36,6 +36,22 @@ public class MainActivity extends AppCompatActivity {
         passwordTextView = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
+        if(isUserLoggedIn()) {
+            Intent toDoListIntent = new Intent(getApplicationContext(), ToDoListActivity.class);
+            toDoListIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(toDoListIntent);
+            finish();
+        }
+    }
+
+    private boolean isUserLoggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ToDoListUser", MODE_PRIVATE);
+        String userName = sharedPreferences.getString("userName", "");
+        String userEmail = sharedPreferences.getString("userEmail", "");
+        System.out.println(userName);
+        System.out.println(userEmail);
+        System.out.println(userEmail.length() > 0 && userName.length() > 0);
+        return userEmail.length() > 0 && userName.length() > 0;
     }
 
     public void loginUser(android.view.View view) {
