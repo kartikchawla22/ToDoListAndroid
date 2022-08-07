@@ -8,8 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 
 public class DataModel extends SQLiteOpenHelper {
     Context context;
@@ -34,8 +32,9 @@ public class DataModel extends SQLiteOpenHelper {
         db.execSQL(query);
         onCreate(db);
     }
+
     private String getUserEmail(SharedPreferences sharedPrefs) {
-     return sharedPrefs.getString("userEmail", "");
+        return sharedPrefs.getString("userEmail", "");
     }
 
     public void addData(String description, String date, String time, SharedPreferences sharedPrefs) {
@@ -53,13 +52,13 @@ public class DataModel extends SQLiteOpenHelper {
     public Cursor readData(SharedPreferences sharedPrefs) {
         String email = getUserEmail(sharedPrefs);
         System.out.println(email);
-        Cursor cursor = db.rawQuery("SELECT * FROM " +  Constants.TO_DO_LIST_TABLE + " WHERE " + Constants.EMAIL_COLUMN + " = ?", new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.TO_DO_LIST_TABLE + " WHERE " + Constants.EMAIL_COLUMN + " = ?", new String[]{email});
         return cursor;
     }
 
     public Cursor fetchItem(Integer itemId, SharedPreferences sharedPrefs) {
         String email = getUserEmail(sharedPrefs);
-        Cursor cursor = db.rawQuery("SELECT " + Constants.ID_COLUMN + ", " + Constants.DESCRIPTION_COLUMN + ", " + Constants.DATE_COLUMN + ", " + Constants.TIME_COLUMN + " FROM " + Constants.TO_DO_LIST_TABLE + " WHERE " + Constants.ID_COLUMN + " = ? AND " + Constants.EMAIL_COLUMN + " = ?" , new String[]{itemId.toString(), email});
+        Cursor cursor = db.rawQuery("SELECT " + Constants.ID_COLUMN + ", " + Constants.DESCRIPTION_COLUMN + ", " + Constants.DATE_COLUMN + ", " + Constants.TIME_COLUMN + " FROM " + Constants.TO_DO_LIST_TABLE + " WHERE " + Constants.ID_COLUMN + " = ? AND " + Constants.EMAIL_COLUMN + " = ?", new String[]{itemId.toString(), email});
         return cursor;
     }
 
@@ -74,7 +73,7 @@ public class DataModel extends SQLiteOpenHelper {
 
     public boolean deleteItem(Integer itemId, SharedPreferences sharedPrefs) {
         String email = getUserEmail(sharedPrefs);
-        return db.delete(Constants.TO_DO_LIST_TABLE, Constants.ID_COLUMN + " = ? AND "  + Constants.EMAIL_COLUMN + " = ?", new String[]{itemId.toString(), email}) > -1;
+        return db.delete(Constants.TO_DO_LIST_TABLE, Constants.ID_COLUMN + " = ? AND " + Constants.EMAIL_COLUMN + " = ?", new String[]{itemId.toString(), email}) > -1;
     }
 
     static class Constants {

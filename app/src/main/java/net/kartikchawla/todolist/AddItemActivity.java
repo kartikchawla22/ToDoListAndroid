@@ -23,13 +23,13 @@ import java.util.Calendar;
 
 public class AddItemActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPrefs;
     private DataModel dataModel;
     private EditText dateTextField;
     private EditText timeTextField;
     private EditText descriptionTextField;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
-    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class AddItemActivity extends AppCompatActivity {
         dateTextField = findViewById(R.id.datePicker);
         timeTextField = findViewById(R.id.timePicker);
         descriptionTextField = findViewById(R.id.description);
-         sharedPrefs = getSharedPreferences("ToDoListUser", MODE_PRIVATE);
+        sharedPrefs = getSharedPreferences("ToDoListUser", MODE_PRIVATE);
         String name = sharedPrefs.getString("userName", "");
         setTitle("Hello, " + name);
 

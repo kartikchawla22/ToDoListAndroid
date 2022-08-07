@@ -21,10 +21,9 @@ import net.kartikchawla.todolist.toDoList.ToDoListContent;
 public class ToDoItemFragment extends Fragment {
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    private DataModel dataModel;
     // TODO: Customize parameters
     private final int mColumnCount = 1;
-
+    private DataModel dataModel;
     private String str;
 
     /**
