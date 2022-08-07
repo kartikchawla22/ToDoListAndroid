@@ -8,64 +8,88 @@
     tools:context=".DetailsViewActivity">
 
 
-    <TextView
-        android:id="@+id/dateView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/timeView"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="176dp" />
-
-    <TextView
-        android:id="@+id/timeView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionView"
-        app:layout_constraintTop_toBottomOf="@+id/dateView"
-        tools:layout_editor_absoluteX="176dp" />
-
-    <TextView
-        android:id="@+id/descriptionView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/editbtn"
-        app:layout_constraintTop_toBottomOf="@+id/timeView"
-        tools:layout_editor_absoluteX="176dp" />
-
-    <Button
-        android:id="@+id/editbtn"
+    <EditText
+        android:id="@+id/datePickerInDetailsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#3F51B5"
-        android:onClick="updatePage"
+        android:ems="10"
+        android:enabled="true"
+        android:focusableInTouchMode="false"
+        android:gravity="center|center_horizontal"
+        android:hint="Select Date"
+        android:inputType="time"
+        android:minHeight="48dp"
+        android:onClick="openCalendar"
+        android:selectAllOnFocus="false"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/timePickerInDetailsView"
+        app:layout_constraintEnd_toEndOf="@+id/timePickerInDetailsView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/timePickerInDetailsView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/descriptionInDetailsView"
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center|center_horizontal"
+        android:hint="Enter Description"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/addToListButton"
+        app:layout_constraintEnd_toEndOf="@+id/addToListButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/addToListButton"
+        app:layout_constraintTop_toBottomOf="@+id/timePickerInDetailsView" />
+
+
+    <EditText
+        android:id="@+id/timePickerInDetailsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:enabled="true"
+        android:focusableInTouchMode="false"
+        android:gravity="center|center_horizontal"
+        android:hint="Select Time"
+        android:inputType="time"
+        android:minHeight="48dp"
+        android:onClick="openTimePicker"
+        android:selectAllOnFocus="false"
+        android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionInDetailsView"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionInDetailsView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/descriptionInDetailsView"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerInDetailsView" />
+
+    <Button
+        android:id="@+id/addToListButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2196F3"
+        android:onClick="updateItemUsingId"
         android:text="UPDATE"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/deletebtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionView" />
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionInDetailsView" />
 
     <Button
-        android:id="@+id/deletebtn"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#2C2F31"
-        android:backgroundTint="#DA5B62"
-        android:onClick="deleteItem"
+        android:backgroundTint="#F44336"
+        android:onClick="deleteItemUsingId"
         android:text="DELETE"
-        android:textSize="25sp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editbtn" />
+        app:layout_constraintTop_toBottomOf="@+id/addToListButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

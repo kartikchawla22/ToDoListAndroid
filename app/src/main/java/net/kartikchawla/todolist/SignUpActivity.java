@@ -38,6 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void signupApi() {
+        progressBar.setVisibility(View.VISIBLE);
         String url = String.format("https://script.google.com/macros/s/AKfycbzOkf5ldgNYJD71bQMIBZxtDaJbWQDhLGb_isI3_g_8-Sg8zbvUoxD8SpCrkZ-kMoRzaQ/exec?signup=signup&name=%s&email=%s&password=%s", nameTextView.getText().toString(), emailTextView.getText().toString(), passwordTextView.getText().toString());
         new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
             @Override

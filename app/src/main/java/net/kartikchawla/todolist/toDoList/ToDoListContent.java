@@ -32,13 +32,18 @@ public class ToDoListContent {
             String date, time, description;
             Integer id;
             do {
+
                 id = data.getInt(0);
-                description = data.getString(1);
-                date = data.getString(2);
-                time = data.getString(3);
+                date = data.getString(1);
+                time = data.getString(2);
+                description = data.getString(3);
                 description = description.split("\n")[0];
                 description = description.substring(0, Math.min(description.length(), 10)) + (description.length() > 10 ? "..." : "");
                 ToDoListItem item = new ToDoListItem(id.toString(), description, date + " at " + time);
+                System.out.println(id);
+                System.out.println(description);
+                System.out.println(date);
+                System.out.println(time);
                 addItem(item);
             } while (data.moveToNext());
         }

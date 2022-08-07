@@ -34,7 +34,7 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
+        holder.mIdView.setText(String.valueOf(position + 1));
         holder.mContentView.setText(mValues.get(position).content);
         holder.mDateTimeView.setText(mValues.get(position).dateTime);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
