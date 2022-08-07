@@ -16,9 +16,6 @@
         android:theme="@style/Theme.ToDoList"
         tools:targetApi="31">
         <activity
-            android:name=".updateItem"
-            android:exported="false" />
-        <activity
             android:name=".DetailsViewActivity"
             android:exported="false" />
         <activity

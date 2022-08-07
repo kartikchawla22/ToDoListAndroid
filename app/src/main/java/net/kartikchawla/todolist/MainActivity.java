@@ -1,6 +1,7 @@
 package net.kartikchawla.todolist;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -66,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     if (body.get("status").equals("Error")) {
                         Toast.makeText(MainActivity.this, data.get("message").toString(), Toast.LENGTH_SHORT).show();
                     } else {
+                        saveUserDetails(data.get("name").toString(), data.get("email").toString());
                         Intent toDoListIntent = new Intent(getApplicationContext(), ToDoListActivity.class);
-                        toDoListIntent.putExtra("name", data.get("name").toString());
                         toDoListIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(toDoListIntent);
                         finish();
@@ -83,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void saveUserDetails(String userName, String userEmail) {
+        SharedPreferences sharedPrefs = getSharedPreferences("ToDoListUser", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putString("userName", userName);
+        editor.putString("userEmail", userEmail);
+        editor.apply();
     }
 
     public void onsignupClick(View view) {
