@@ -74,6 +74,7 @@ public class updateItem extends AppCompatActivity {
                         ((TextView) view).setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                     }
                 }, year, month, day);
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis()-1000);
         datePickerDialog.show();
     }
 
