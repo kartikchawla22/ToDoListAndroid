@@ -118,7 +118,6 @@ public class DetailsViewActivity extends AppCompatActivity {
     }
 
     public void deleteItemUsingId(android.view.View view) {
-        System.out.println("inside delete");
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setMessage("Confirm Delete?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }

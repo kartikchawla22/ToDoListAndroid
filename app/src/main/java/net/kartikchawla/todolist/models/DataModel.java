@@ -16,7 +16,6 @@ public class DataModel extends SQLiteOpenHelper {
     public DataModel(Context context) {
         super(context, Constants.TO_DO_LIST_DB, null, Constants.VERSION);
         this.context = context;
-        System.out.println(context.getDatabasePath(Constants.TO_DO_LIST_DB));
         db = this.getWritableDatabase();
     }
 
@@ -51,7 +50,6 @@ public class DataModel extends SQLiteOpenHelper {
 
     public Cursor readData(SharedPreferences sharedPrefs) {
         String email = getUserEmail(sharedPrefs);
-        System.out.println(email);
         Cursor cursor = db.rawQuery("SELECT * FROM " + Constants.TO_DO_LIST_TABLE + " WHERE " + Constants.EMAIL_COLUMN + " = ?", new String[]{email});
         return cursor;
     }
