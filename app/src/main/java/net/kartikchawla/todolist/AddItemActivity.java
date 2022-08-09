@@ -16,12 +16,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.kartikchawla.todolist.models.DataModel;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class AddItemActivity extends AppCompatActivity {
+
+    /**
+     * Class variables
+     * sharedPrefs is used to handle logged in user data.
+     * dataModel is an object of DataModel Class.
+     * dateTextField, timeTextField and descriptionTextField are the text fields shown in the view.
+     * datePickerDialog and timePickerDialog are the dialogues that open when we want to select data / time.
+     */
 
     SharedPreferences sharedPrefs;
     private DataModel dataModel;
@@ -31,6 +36,13 @@ public class AddItemActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 
+    /**
+     * This method is called when this class comes into the memory.
+     * This is called just after the constructor (if this class had one).
+     * This is used to initialize all class variables.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +57,13 @@ public class AddItemActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is called when we click on add button.
+     * This is will the data in database and take the user back to list page.
+     *
+     * @param view
+     */
+
     public void addItem(android.view.View view) {
         String description = descriptionTextField.getText().toString();
         String date = dateTextField.getText().toString();
@@ -55,13 +74,16 @@ public class AddItemActivity extends AppCompatActivity {
             toDoListIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(toDoListIntent);
             finish();
-
         } else {
             Toast.makeText(AddItemActivity.this, "Fields Mandatory: Please enter data !", Toast.LENGTH_SHORT).show();
         }
-
-
     }
+
+    /**
+     * This method is used to open the calendar dialogue.
+     *
+     * @param view
+     */
 
     public void openCalendar(android.view.View view) {
         final Calendar cldr = Calendar.getInstance();
@@ -80,6 +102,12 @@ public class AddItemActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    /**
+     * This method is used to open timePicker dialogue.
+     *
+     * @param view
+     */
+
     public void openTimePicker(android.view.View view) {
         final Calendar cldr = Calendar.getInstance();
         int hour = cldr.get(Calendar.HOUR_OF_DAY);
@@ -94,19 +122,5 @@ public class AddItemActivity extends AppCompatActivity {
                 }, hour, minute, true);
 
         timePickerDialog.show();
-    }
-
-    private String currentTime() {
-        LocalTime myDateObj = LocalTime.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:MM");
-        String formattedTime = myDateObj.format(myFormatObj);
-        return formattedTime;
-    }
-
-    private String currentDate() {
-        LocalDate myDateObj = LocalDate.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formatted = myDateObj.format(myFormatObj);
-        return formatted;
     }
 }

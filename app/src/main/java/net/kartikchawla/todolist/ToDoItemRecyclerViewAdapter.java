@@ -15,15 +15,31 @@ import java.util.List;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link ToDoListItem}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRecyclerViewAdapter.ViewHolder> {
+    /**
+     * Class variables
+     * All values stored in the DB are added to the array mValues.
+     */
     private final List<ToDoListItem> mValues;
 
+    /**
+     * Used to populate mValues with all the items.
+     *
+     * @param items
+     */
     public ToDoItemRecyclerViewAdapter(List<ToDoListItem> items) {
         mValues = items;
     }
 
+    /**
+     * Defines and returns a {@link androidx.recyclerview.widget.RecyclerView.ViewHolder}
+     * Used to inflate the view in which particular data will be shown.
+     *
+     * @param parent
+     * @param viewType
+     * @return ViewHolder
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -31,6 +47,13 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
 
     }
 
+    /**
+     * User to bind the viewHolder with textViews present on the screen.
+     * Populates the views using data from data stored in DB.
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
@@ -48,10 +71,18 @@ public class ToDoItemRecyclerViewAdapter extends RecyclerView.Adapter<ToDoItemRe
 
     }
 
+    /**
+     * @return size of mValues
+     */
+
     @Override
     public int getItemCount() {
         return mValues.size();
     }
+
+    /**
+     * View holder class that holds all the text views needs to be displayed on the screen.
+     */
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;

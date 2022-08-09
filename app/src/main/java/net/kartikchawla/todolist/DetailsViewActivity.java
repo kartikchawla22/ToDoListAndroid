@@ -22,9 +22,23 @@ import java.util.Calendar;
 
 public class DetailsViewActivity extends AppCompatActivity {
 
+    /**
+     * Class variables
+     * dateTextField, timeTextField and descriptionTextField are the text fields shown in the view
+     * dataModel is ab object of class DataModel
+     * sharedPrefs is used to handle data of logged in user.
+     * selectedID is the ID of selected row {Primary key}.
+     * datePickerDialog is used to handle calendar dialogue.
+     * timePickerDialog is used to handle time picker dialogue.
+     */
+
     public String selectedID;
-    DataModel dataModel;
-    SharedPreferences sharedPrefs;
+    private DataModel dataModel;
+    private SharedPreferences sharedPrefs;
+    /**
+     * dialogClickListener is used to handle yes/no option shown to user while deleting a particular record.
+     */
+
     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
@@ -46,12 +60,18 @@ public class DetailsViewActivity extends AppCompatActivity {
             }
         }
     };
+
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
     private EditText dateTextField;
     private EditText timeTextField;
     private EditText descriptionTextField;
 
+    /**
+     * This method is used to initialize class variables.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,28 +82,28 @@ public class DetailsViewActivity extends AppCompatActivity {
         timeTextField = findViewById(R.id.timePickerInDetailsView);
         descriptionTextField = findViewById(R.id.descriptionInDetailsView);
 
-
         selectedID = getIntent().getStringExtra("id");
 
         Cursor data = dataModel.fetchItem(Integer.parseInt(selectedID), sharedPrefs);
-
-
         data.moveToFirst();
         String date, time, description;
         description = data.getString(1);
         date = data.getString(2);
         time = data.getString(3);
 
-
         dateTextField.setText(date);
         timeTextField.setText(time);
         descriptionTextField.setText(description);
 
-
         String name = sharedPrefs.getString("userName", "");
         setTitle("Hello, " + name);
-
     }
+
+    /**
+     * This method is used to open the calendar dialogue.
+     *
+     * @param view
+     */
 
     public void openCalendar(android.view.View view) {
         final Calendar cldr = Calendar.getInstance();
@@ -102,6 +122,12 @@ public class DetailsViewActivity extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+    /**
+     * This method is used to open the time picker dialogue.
+     *
+     * @param view
+     */
+
     public void openTimePicker(android.view.View view) {
         final Calendar cldr = Calendar.getInstance();
         int hour = cldr.get(Calendar.HOUR_OF_DAY);
@@ -117,10 +143,22 @@ public class DetailsViewActivity extends AppCompatActivity {
         timePickerDialog.show();
     }
 
+    /**
+     * This method is used to delete the selected row.
+     *
+     * @param view
+     */
+
     public void deleteItemUsingId(android.view.View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
         builder.setMessage("Confirm Delete?").setPositiveButton("Yes", dialogClickListener).setNegativeButton("No", dialogClickListener).show();
     }
+
+    /**
+     * This method is used to update the selected row.
+     *
+     * @param view
+     */
 
     public void updateItemUsingId(android.view.View view) {
         boolean result = dataModel.updateItem(
@@ -128,8 +166,7 @@ public class DetailsViewActivity extends AppCompatActivity {
                 descriptionTextField.getText().toString(),
                 dateTextField.getText().toString(),
                 timeTextField.getText().toString(),
-                sharedPrefs
-        );
+                sharedPrefs);
         if (result) {
             Toast.makeText(this, "Item Updated Successfully!", Toast.LENGTH_SHORT).show();
             Intent toDoListintent = new Intent(this, ToDoListActivity.class);

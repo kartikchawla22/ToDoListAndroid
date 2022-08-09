@@ -19,9 +19,20 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 public class SignUpActivity extends AppCompatActivity {
+    /**
+     * Class variables
+     * passwordTextView, emailTextView, nameTextView are the text fields shown in the view.
+     * progressBar is the loader
+     */
 
     private EditText passwordTextView, emailTextView, nameTextView;
     private ProgressBar progressBar;
+
+    /**
+     * This method is used to initialize Class variables.
+     *
+     * @param savedInstanceState
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +48,20 @@ public class SignUpActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * This method is user to call the signup API.
+     */
+
     private void signupApi() {
         progressBar.setVisibility(View.VISIBLE);
         String url = String.format("https://script.google.com/macros/s/AKfycbzOkf5ldgNYJD71bQMIBZxtDaJbWQDhLGb_isI3_g_8-Sg8zbvUoxD8SpCrkZ-kMoRzaQ/exec?signup=signup&name=%s&email=%s&password=%s", nameTextView.getText().toString(), emailTextView.getText().toString(), passwordTextView.getText().toString());
         new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
+            /**
+             * Called when the API call is success.
+             * @param statusCode
+             * @param headers
+             * @param responseBody
+             */
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String str = new String(responseBody);
@@ -59,14 +80,26 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
 
+            /**
+             * Called when there is a failure in API call.
+             * @param statusCode
+             * @param headers
+             * @param responseBody
+             * @param error
+             */
+
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                    textView.setText("Error in calling api");
                 Toast.makeText(SignUpActivity.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    /**
+     * Called when user clicks signup button on the page.
+     *
+     * @param view
+     */
     public void onSignupUser(android.view.View view) {
         String email = emailTextView.getText().toString();
         String password = passwordTextView.getText().toString();

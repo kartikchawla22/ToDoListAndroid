@@ -22,11 +22,20 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
-    // private TextView userNameEdt, passwordEdt;
+    /**
+     * Class variables
+     * passwordTextView and emailTextView are the text fields shown in the view.
+     * progressBar is the loader.
+     */
     private TextView passwordTextView, emailTextView;
     private ProgressBar progressBar;
 
 
+    /**
+     * This method is used to initialize all the class variables.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +45,10 @@ public class MainActivity extends AppCompatActivity {
         passwordTextView = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-        if(isUserLoggedIn()) {
+
+        // Checking if the user is logged in, if yes then user will be redirected to list page directly.
+
+        if (isUserLoggedIn()) {
             Intent toDoListIntent = new Intent(getApplicationContext(), ToDoListActivity.class);
             toDoListIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(toDoListIntent);
@@ -44,12 +56,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Private method used to determine if user is logged in.
+     * Checks is there is saved data for userName and userName to determine if user is logged in.
+     *
+     * @return
+     */
+
     private boolean isUserLoggedIn() {
         SharedPreferences sharedPreferences = getSharedPreferences("ToDoListUser", MODE_PRIVATE);
         String userName = sharedPreferences.getString("userName", "");
         String userEmail = sharedPreferences.getString("userEmail", "");
         return userEmail.length() > 0 && userName.length() > 0;
     }
+
+    /**
+     * This method is used to login the user.
+     * Called then user clicks login button.
+     *
+     * @param view
+     */
 
     public void loginUser(android.view.View view) {
         String email = emailTextView.getText().toString();
@@ -67,9 +93,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This is the method that hits the login API and checks if the user is logged in or not.
+     */
+
     private void loginApi() {
         String url = String.format("https://script.google.com/macros/s/AKfycbzOkf5ldgNYJD71bQMIBZxtDaJbWQDhLGb_isI3_g_8-Sg8zbvUoxD8SpCrkZ-kMoRzaQ/exec?email=%s&password=%s", emailTextView.getText().toString(), passwordTextView.getText().toString());
         new AsyncHttpClient().get(url, new AsyncHttpResponseHandler() {
+            /**
+             * Called when the API call is success.
+             * @param statusCode
+             * @param headers
+             * @param responseBody
+             */
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 String str = new String(responseBody);
@@ -91,6 +127,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            /**
+             * Called when there is a failure in API call.
+             * @param statusCode
+             * @param headers
+             * @param responseBody
+             * @param error
+             */
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 //                    textView.setText("Error in calling api");

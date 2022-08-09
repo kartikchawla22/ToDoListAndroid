@@ -5,24 +5,30 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
- */
 public class ToDoListContent {
-
     /**
-     * An array of sample (placeholder) items.
+     * Class variables. using static so that we don't need to create object of class.
      */
+
     public static final List<ToDoListItem> ITEMS = new ArrayList<ToDoListItem>();
 
     private static int COUNT = 0;
 
+    /**
+     * This method is used to update the ITEMS variable.
+     *
+     * @param item
+     */
+
     private static void addItem(ToDoListItem item) {
         ITEMS.add(item);
     }
+
+    /**
+     * This method is used to read the data from cursor object and pass it along by converting the raw data into a particular format{ToDoListItem}.
+     *
+     * @param data
+     */
 
     public static void makeToDoList(Cursor data) {
         ITEMS.clear();
@@ -44,6 +50,10 @@ public class ToDoListContent {
         }
     }
 
+    /**
+     * Static class so that we won't need to make the object of class.
+     * used to format the raw data read using cursor.
+     */
     public static class ToDoListItem {
         public final String id;
         public final String content;
